@@ -19,4 +19,12 @@ atividade-pos-IaaS
 
 # 5 - Post to database using curl
 
-curl -d @request.json -H "Content-Type: application/json" https://your-url-ramdom-api.us-east-1.amazonaws.com/dev/candidates
+curl -d @request.json -H "Content-Type: application/json" https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates
+
+# 6 - Get to database post
+
+curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates
+
+# 7 - Delete post
+
+curl -X DELETE https://rjts2fqk3d.execute-api.us-east-1.amazonaws.com/dev/candidates/your_id_to_post
