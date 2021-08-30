@@ -88,6 +88,25 @@ module.exports.get = (event, context, callback) => {
         });
 };
 
+module.exports.remove = (event, context, callback) => {
+    const params = {
+        TableName: process.env.CANDIDATE_TABLE,
+        Key: {
+            id: event.pathParameters.id,
+        },
+    };
+    dynamoDb.delete(params)
+        .promise()
+        .then(result => {
+            callback(null, removeResponseBuilder(JSON.stringify({"message":"Sucessfully removed candidate"})));
+        })
+        .catch(error => {
+            console.error(error);
+            callback(new Error('Couldn\'t fetch candidate.'));
+            return;
+        });
+};
+
 const checkCandidateExistsP = (candidate) => {
     console.log('Checking if candidate already exists...');
     const query = {
@@ -119,6 +138,17 @@ const submitCandidateP = candidate => {
 
 
 const successResponseBuilder = (body) => {
+    return {
+        statusCode: 200,
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: body
+    };
+};
+
+const removeResponseBuilder = (body) => {
     return {
         statusCode: 200,
         headers: {
@@ -168,4 +198,3 @@ const candidateInfo = (fullname, email, experience, skills, recruiterEmail) => {
         updatedAt: timestamp,
     };
 };
-
