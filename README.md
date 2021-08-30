@@ -8,6 +8,10 @@ atividade-pos-IaaS
 
 - nvm use v14.4.0
 
+# 2.1 - Install apps in the folder to project referring to the package.json file
+
+- nvm install
+
 # 3 - Deploy Project
 - sls deploy -v 
 
