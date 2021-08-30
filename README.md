@@ -19,7 +19,8 @@ atividade-pos-IaaS
 
 # 5 - Post to database using curl
 
-curl -d @request.json -H "Content-Type: application/json" https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates
+curl -d @request.json -H "Content-Type: application/json" \
+https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates
 
 # 6 - Get to database post
 
