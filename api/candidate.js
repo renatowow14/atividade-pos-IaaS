@@ -110,11 +110,11 @@ module.exports.remove = (event, context, callback) => {
             );
         })
         .catch(err => {
-            console.error('Failed to remove candidate to system', err);
+            console.log('Failed to remove candidate to system', err);
             callback(null, failureResponseBuilder(
                 409,
                 JSON.stringify({
-                    message: `Unable to remove with id ${id}`
+                    message: err
                 })
             ))
         });
