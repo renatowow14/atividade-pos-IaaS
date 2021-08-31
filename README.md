@@ -1,6 +1,8 @@
 # atividade-pos-IaaS
 atividade-pos-IaaS
 
+![alt text](https://github.com/renatowow14/atividade-pos-IaaS/blob/main/images/image01.png)
+
 # 1 - Install Version Node: 14.4.0
 
 - nvm install v14.4.0
