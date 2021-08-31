@@ -17,7 +17,7 @@ atividade-pos-IaaS
 
 - sls deploy -v 
 
-# 3.0 - Deploy Dynamodb
+# 3.1 - Deploy Dynamodb
 
 - cd terraform
 - terraform init
