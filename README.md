@@ -2,6 +2,7 @@
 atividade-pos-IaaS
 
 # 1 - Install Version Node: 14.4.0
+
 - nvm install v14.4.0
 
 # 2 - User Version Node: 14.4.0
@@ -13,9 +14,17 @@ atividade-pos-IaaS
 - nvm install
 
 # 3 - Deploy Project
+
 - sls deploy -v 
 
-# 4 - Change file request.json
+# 3.0 - Deploy Dynamodb
+
+- cd terraform
+- terraform init
+- terraform plan
+- terraform apply --auto-approve
+- 
+# 4 - Change file request.json to your preference parameters
 
 # 5 - Post to database using curl
 
