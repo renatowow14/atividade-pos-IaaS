@@ -186,25 +186,25 @@ const failureResponseBuilder = (statusCode, body) => {
 
 const removeCandidateP = id => {
     console.log('Removing candidate ');
-    const candidateEmailInfo = {
+    const params = {
         TableName: process.env.CANDIDATE_TABLE,
-        Item: {
-            id: id,
-        },
+        Key: {
+            "id": id
+        }
     };
-    return dynamoDb.delete(candidateEmailInfo)
+    return dynamoDb.delete(params)
         .promise();
 }
 
 const removeCandidateEmailP = id => {
     console.log('Removing candidate email');
-    const candidateEmailInfo = {
+    const params = {
         TableName: process.env.CANDIDATE_EMAIL_TABLE,
-        Item: {
-            candidate_id: id
-        },
+        Key: {
+            "id": id
+        }
     };
-    return dynamoDb.delete(candidateEmailInfo)
+    return dynamoDb.delete(params)
         .promise();
 }
 
