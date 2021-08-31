@@ -114,7 +114,7 @@ module.exports.remove = (event, context, callback) => {
             callback(null, failureResponseBuilder(
                 409,
                 JSON.stringify({
-                    message: `Unable to submit remove with email ${id}`
+                    message: `Unable to remove with id ${id}`
                 })
             ))
         });
