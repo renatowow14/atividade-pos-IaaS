@@ -1,6 +1,5 @@
 service: candidate-service
 
-
 provider:
   name: aws
   runtime: nodejs14.x
@@ -50,40 +49,3 @@ functions:
           path: candidates/{id}
           method: delete
           cors: true                 
-
-resources:
-  Resources:
-    CandidatesDynamoDbTable:
-      Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Retain
-      Properties:
-        AttributeDefinitions:
-          -
-            AttributeName: "id"
-            AttributeType: "S"   
-        KeySchema:
-          -
-            AttributeName: "id"
-            KeyType: "HASH"
-        ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
-        StreamSpecification:
-          StreamViewType: "NEW_IMAGE"
-        TableName: ${self:provider.environment.CANDIDATE_TABLE}
-    CandidateEmailDynamoDbTable:
-      Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Retain
-      Properties:
-        AttributeDefinitions:
-          -
-            AttributeName: "email"
-            AttributeType: "S"
-        KeySchema:
-          -
-            AttributeName: "email"
-            KeyType: "HASH"
-        ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
-        TableName: ${self:provider.environment.CANDIDATE_EMAIL_TABLE}
