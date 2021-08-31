@@ -201,7 +201,7 @@ const removeCandidateEmailP = id => {
     const candidateEmailInfo = {
         TableName: process.env.CANDIDATE_EMAIL_TABLE,
         Item: {
-            candidate_id: candidate.id
+            candidate_id: id
         },
     };
     return dynamoDb.delete(candidateEmailInfo)
