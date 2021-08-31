@@ -89,8 +89,8 @@ module.exports.get = (event, context, callback) => {
 };
 
 module.exports.remove = (event, context, callback) => {
-    const requestBody = JSON.parse(event.body);
-    const id = requestBody.id;
+    /*const requestBody = JSON.parse(event.body);*/
+    const id = event.id;
 
     if (typeof id !== 'string') {
         console.error('Validation Failed');
