@@ -89,7 +89,7 @@ module.exports.get = (event, context, callback) => {
 };
 
 module.exports.remove = (event, context, callback) => {
-    /*const requestBody = JSON.parse(event.body);*/
+    const requestBody = JSON.parse(event.body);
     const id = event.id;
 
     if (typeof id !== 'string') {
