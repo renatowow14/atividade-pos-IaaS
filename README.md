@@ -23,7 +23,7 @@ atividade-pos-IaaS
 - terraform init
 - terraform plan
 - terraform apply --auto-approve
-- 
+
 # 4 - Change file request.json to your preference parameters
 
 # 5 - Post to database using curl
