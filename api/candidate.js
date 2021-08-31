@@ -89,21 +89,34 @@ module.exports.get = (event, context, callback) => {
 };
 
 module.exports.remove = (event, context, callback) => {
-    const params = {
-        TableName: process.env.CANDIDATE_TABLE,
-        Key: {
-            id: event.pathParameters.id,
-        },
-    };
-    dynamoDb.delete(params)
-        .promise()
-        .then(result => {
-            callback(null, removeResponseBuilder(JSON.stringify({"message":"Sucessfully removed candidate"})));
+    
+    const id = requestBody.id;
+
+    if (typeof id !== 'string') {
+        console.error('Validation Failed');
+        callback(new Error('Couldn\'t remove candidate because of validation errors.'));
+        return;
+    }
+    
+    const removecandidateFx = R.composeP(removeCandidateP, removeCandidateEmailP);
+
+    removecandidateFx(id)
+        .then(res => {
+            console.log(`Successfully removed ${id} candidate to system`);
+            callback(null, successResponseBuilder(
+                JSON.stringify({
+                    message: `Sucessfully removed candidate with id ${id}`
+                }))
+            );
         })
-        .catch(error => {
-            console.error(error);
-            callback(new Error('Couldn\'t fetch candidate.'));
-            return;
+        .catch(err => {
+            console.error('Failed to remove candidate to system', err);
+            callback(null, failureResponseBuilder(
+                409,
+                JSON.stringify({
+                    message: `Unable to submit remove with email ${id}`
+                })
+            ))
         });
 };
 
@@ -171,6 +184,31 @@ const failureResponseBuilder = (statusCode, body) => {
 };
 
 
+const removeCandidateP = id => {
+    console.log('Removing candidate ');
+    const candidateEmailInfo = {
+        TableName: process.env.CANDIDATE_TABLE,
+        Item: {
+            id: id,
+        },
+    };
+    return dynamoDb.delete(candidateEmailInfo)
+        .promise();
+}
+
+const removeCandidateEmailP = id => {
+    console.log('Removing candidate email');
+    const candidateEmailInfo = {
+        TableName: process.env.CANDIDATE_EMAIL_TABLE,
+        Item: {
+            candidate_id: candidate.id
+        },
+    };
+    return dynamoDb.delete(candidateEmailInfo)
+        .promise();
+}
+
+
 const submitCandidateEmailP = candidate => {
     console.log('Submitting candidate email');
     const candidateEmailInfo = {
@@ -183,6 +221,7 @@ const submitCandidateEmailP = candidate => {
     return dynamoDb.put(candidateEmailInfo)
         .promise();
 }
+
 
 const candidateInfo = (fullname, email, experience, skills, recruiterEmail) => {
     const timestamp = new Date().getTime();

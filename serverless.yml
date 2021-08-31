@@ -46,6 +46,6 @@ functions:
     handler: api/candidate.remove
     events:
       - http:
-          path: candidates/{id}
-          method: delete
+          path: removeCandidate
+          method: post
           cors: true                 
