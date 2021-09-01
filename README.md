@@ -34,6 +34,22 @@ Plugin: 5.4.4
 SDK: 4.3.0
 Components: 3.17.0
 ```
+
+## Setup Terraform
+
+Nos utilizamos o **tfenv** como gerenciador das versões do terraform, o tfenv é inspirado no **rbenv**. A instalação pode ser feito pelo processo de **make**, conforme abaixo
+
+```
+make terraform-setup
+```
+## Provisionamento de  Infraestrutura com Terraform
+
+## QA
+
+É necessário criar o arquivo de variaveis para o ambiente de qa
+
+## PROD
+
 ## Deploy do Projeto serverless
 
 Para fazer deploy da aplicação serverless execute:
@@ -44,15 +60,8 @@ Serverless: Packaging service...
 Serverless: Excluding development dependencies...
 
 ```
-## Setup Terraform
 
-Nos utilizamos o **tfenv** como gerenciador das versões do terraform, o tfenv é inspirado no **rbenv**. A instalação pode ser feito pelo processo de **make**, conforme abaixo
 
-```
-make terraform-setup
-```
-
-## Provisionamento de  Infraestrutura com Terraform
 
 # 3.1 - Deploy Dynamodb
 
