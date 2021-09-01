@@ -50,7 +50,6 @@ Nos utilizamos o **tfenv** como gerenciador das vers√µes do terraform, o tfenv √
 
 ```
 make terraform-setup
-
 ```
 
 ## Provisionamento de  Infraestrutura com Terraform
