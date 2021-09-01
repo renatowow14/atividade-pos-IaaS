@@ -7,8 +7,9 @@
  - NVM
  - Node 14
  - Serverless
+ - tfenv 
 
-## Instalação NVM
+## Setup NVM,Node e Serverless
 
 Para fazer a instalação dos componentes acima(NVM, node e Serverless), execute 
 
@@ -43,7 +44,16 @@ Serverless: Packaging service...
 Serverless: Excluding development dependencies...
 
 ```
+## Setup Terraform
 
+Nos utilizamos o **tfenv** como gerenciador das versões do terraform, o tfenv é inspirado no **rbenv**. A instalação pode ser feito pelo processo de **make**, conforme abaixo
+
+```
+make terraform-setup
+
+```
+
+## Provisionamento de  Infraestrutura com Terraform
 
 # 3.1 - Deploy Dynamodb
 
