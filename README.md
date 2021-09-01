@@ -4,24 +4,46 @@
 
 ## Pre requisitos
 
- - Node 
- -
+ - NVM
+ - Node 14
+ - Serverless
 
-# 1 - Install Version Node: 14.4.0
+## Instalação NVM
 
-- nvm install v14.4.0
+Para fazer a instalação dos componentes acima(NVM, node e Serverless), execute 
 
-# 2 - User Version Node: 14.4.0
+```
+make serverless-setup
+chmod +x scripts.sh
+./scripts.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 14926  100 14926    0     0  23105      0 --:--:-- --:--:-- --:--:-- 23105
+=> nvm is already installed in /Users/bezaleelramos/.nvm, trying to update using git
+=> => Compressing and cleaning up git repository
+...
+v14.4.0 is already installed.
+Now using node v14.4.0 (npm v6.14.5)
+Now using node v14.4.0 (npm v6.14.5)
+...
++ serverless@2.57.0
+updated 3 packages in 72.213s
+Framework Core: 2.57.0
+Plugin: 5.4.4
+SDK: 4.3.0
+Components: 3.17.0
+```
+## Deploy do Projeto serverless
 
-- nvm use v14.4.0
+Para fazer deploy da aplicação serverless execute:
 
-# 2.1 - Install apps in the folder to project referring to the package.json file
+```
+make deploy-serverless
+Serverless: Packaging service...
+Serverless: Excluding development dependencies...
 
-- nvm install
+```
 
-# 3 - Deploy Project
-
-- sls deploy -v 
 
 # 3.1 - Deploy Dynamodb
 
