@@ -9,7 +9,7 @@
  - Serverless
  - tfenv 
 
-## Setup NVM,Node e Serverless
+# Setup NVM,Node e Serverless
 
 Para fazer a instalação dos componentes acima(NVM, node e Serverless), execute 
 
@@ -42,13 +42,53 @@ Nos utilizamos o **tfenv** como gerenciador das versões do terraform, o tfenv �
 ```
 make terraform-setup
 ```
-## Provisionamento de  Infraestrutura com Terraform
+# Provisionamento de  Infraestrutura com Terraform
 
-## QA
+## DEV
 
-É necessário criar o arquivo de variaveis para o ambiente de qa
+Dentro do diretorio **terraform/** crie um arquivo chamado dev.tfvars
+
+As seguintes variaveis precisam ser informadas:
+
+```
+aws_candidate_develop
+aws_candidate_email_develop
+aws_write_capacity  
+aws_read_capacity  
+aws_tags_env
+```
+
+Em seguida execute o comando make para init,plan e apply passando o ambiente
+
+```
+make terraform-init-dev
+make terraform-plan-dev
+make terraform-apply-dev
+
+```
 
 ## PROD
+
+Dentro do diretorio **terraform/** crie um arquivo chamado **prod.tfvars**
+
+As seguintes variaveis precisam ser informadas:
+
+```
+aws_candidate_develop
+aws_candidate_email_develop
+aws_write_capacity  
+aws_read_capacity  
+aws_tags_env
+```
+
+Em seguida execute o comando make para init,plan e apply passando o ambiente:
+
+```
+make terraform-init-prod
+make terraform-plan-prod
+make terraform-apply-prod
+
+```
 
 ## Deploy do Projeto serverless
 
@@ -61,30 +101,52 @@ Serverless: Excluding development dependencies...
 
 ```
 
+# Metodos
 
+Existe um arquivo chamado **request.json** onde vc pode adicionar os parametros a serem passado na api
 
-# 3.1 - Deploy Dynamodb
+EX: 
 
-- cd terraform
-- terraform init
-- terraform plan
-- terraform apply --auto-approve
+```
+cat request.json
+{
+  "fullname": "Name",
+  "email": "Email@dot.com",
+  "experience": 2,
+  "skills": "ti",
+  "recruiterEmail": "email@dot.com"
+}
 
-# 4 - Change file request.json to your preference parameters
+```
 
-# 5 - Post to database using curl
+## Metodo POST
 
+Use o comando curl para executar o POST:
+
+```
 curl -d @request.json -H "Content-Type: application/json" \
 https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates
 
-# 6 - Get to database post
+```
 
+## Metodo GET
+
+Use o comando curl para executar o GET:
+
+```
 curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates
+```
 
-# 6.1 - Get candidate details by their id
+## Metodo Delete
 
-curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates/your_ramdom_id
+Use o comando curl para executar o Delete:
 
-# 7 - Delete post
-
+```
 curl -X DELETE https://rjts2fqk3d.execute-api.us-east-1.amazonaws.com/dev/candidates/your_id_to_post
+```
+
+## Consulta detalhada dos candidatos
+
+```
+curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates/your_ramdom_id
+```

@@ -18,9 +18,15 @@ endif
 deploy-serverless:
 	sls deploy -v 
 
-terraform-plan-qa|prod:
+terraform-init-%:
+	cd terraform &&	terraform init
 
-terraform-apply-qa|prod:
+terraform-plan-%:
+	cd terraform && terraform plan -var-file="$*.tfvars"
+	
+
+terraform-apply-%:
+	cd terraform && terraform apply  -var-file="$*.tfvars"
 
 
 
