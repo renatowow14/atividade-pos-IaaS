@@ -93,6 +93,7 @@ module.exports.remove = (event, context, callback) => {
     console.log("Receieved request submit candidate details. Event is", event);
     const requestBody = JSON.parse(event.body);
     const id = requestBody.id;
+    console.log(requestBody);
 
     if (typeof id !== 'string') {
         console.error('Validation Failed');
@@ -187,25 +188,27 @@ const failureResponseBuilder = (statusCode, body) => {
 
 const removeCandidateP = id => {
     console.log('Removing candidate ');
+    console.log('removeCandidateP ', id);
     const params = {
         TableName: process.env.CANDIDATE_TABLE,
         Key: {
-            id: id
+            "id": id
         }
     };
-    return dynamoDb.delete(params)
+    return dynamoDb.deleteItem(params)
         .promise();
 }
 
 const removeCandidateEmailP = id => {
     console.log('Removing candidate email');
+    console.log('removeCandidateEmailP ', id);
     const params = {
         TableName: process.env.CANDIDATE_EMAIL_TABLE,
         Key: {
-            candidate_id: "id"
+            "candidate_id": id
         }
     };
-    return dynamoDb.delete(params)
+    return dynamoDb.deleteItem(params)
         .promise();
 }
 
