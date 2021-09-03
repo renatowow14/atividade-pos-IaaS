@@ -188,28 +188,57 @@ const failureResponseBuilder = (statusCode, body) => {
 
 const removeCandidateP = id => {
     console.log('Removing candidate ');
-    console.log('removeCandidateP ', id);
+    console.log('removeCandidateP ID ', id);
+
     const params = {
         TableName: process.env.CANDIDATE_TABLE,
-        Key: {
+        Key:{
             "id": id
+        },
+        ConditionExpression:"info.rating <= :val",
+        ExpressionAttributeValues: {
+            ":val": 5.0
         }
     };
-    return dynamoDb.deleteItem(params)
-        .promise();
+
+    const promise = new Promise((resolve, reject) => {
+        dynamoDb.delete(params, function(err, data) {
+            if (err) {
+                reject(Error(err))
+            } else {
+                resolve(data)
+            }
+        });
+    });
+    return promise;
 }
 
 const removeCandidateEmailP = id => {
     console.log('Removing candidate email');
     console.log('removeCandidateEmailP ', id);
+
     const params = {
         TableName: process.env.CANDIDATE_EMAIL_TABLE,
-        Key: {
+        Key:{
             "candidate_id": id
+        },
+        ConditionExpression:"info.rating <= :val",
+        ExpressionAttributeValues: {
+            ":val": 5.0
         }
     };
-    return dynamoDb.deleteItem(params)
-        .promise();
+
+    const promise = new Promise((resolve, reject) => {
+        dynamoDb.delete(params, function(err, data) {
+            if (err) {
+                reject(Error(err))
+            } else {
+                resolve(data)
+            }
+        });
+    });
+
+    return promise;
 }
 
 const submitCandidateEmailP = candidate => {
