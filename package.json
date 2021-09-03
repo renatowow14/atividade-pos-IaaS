@@ -2,8 +2,6 @@
   "name": "candidate-service",
   "version": "1.0.0",
   "description": "REST API backend for candidate",
-  "author": "Shekhar Gulati",
-  "license": "MIT",
   "dependencies": {
     "bluebird": "^3.4.7",
     "ramda": "^0.23.0",
