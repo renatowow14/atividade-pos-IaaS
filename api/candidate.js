@@ -70,6 +70,7 @@ module.exports.list = (event, context, callback) => {
 };
 
 module.exports.get = (event, context, callback) => {
+    console.log("Receieved request to list all candidates. Event is", event);
     const params = {
         TableName: process.env.CANDIDATE_TABLE,
         Key: {
