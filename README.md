@@ -2,44 +2,151 @@
 
 ![alt text](https://github.com/renatowow14/atividade-pos-IaaS/blob/main/images/image01.png)
 
-# 1 - Install Version Node: 14.4.0
+## Pre requisitos
 
-- nvm install v14.4.0
+ - NVM
+ - Node 14
+ - Serverless
+ - tfenv 
 
-# 2 - User Version Node: 14.4.0
+# Setup NVM,Node e Serverless
 
-- nvm use v14.4.0
+Para fazer a instalação dos componentes acima(NVM, node e Serverless), execute 
 
-# 2.1 - Install apps in the folder to project referring to the package.json file
+```
+make serverless-setup
+chmod +x scripts.sh
+./scripts.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 14926  100 14926    0     0  23105      0 --:--:-- --:--:-- --:--:-- 23105
+=> nvm is already installed in /Users/bezaleelramos/.nvm, trying to update using git
+=> => Compressing and cleaning up git repository
+...
+v14.4.0 is already installed.
+Now using node v14.4.0 (npm v6.14.5)
+Now using node v14.4.0 (npm v6.14.5)
+...
++ serverless@2.57.0
+updated 3 packages in 72.213s
+Framework Core: 2.57.0
+Plugin: 5.4.4
+SDK: 4.3.0
+Components: 3.17.0
+```
 
-- nvm install
+## Setup Terraform
 
-# 3 - Deploy Project
+Nos utilizamos o **tfenv** como gerenciador das versões do terraform, o tfenv é inspirado no **rbenv**. A instalação pode ser feito pelo processo de **make**, conforme abaixo
 
-- sls deploy -v 
+```
+make terraform-setup
+```
+# Provisionamento de  Infraestrutura com Terraform
 
-# 3.1 - Deploy Dynamodb
+## DEV
 
-- cd terraform
-- terraform init
-- terraform plan
-- terraform apply --auto-approve
+Dentro do diretorio **terraform/** crie um arquivo chamado dev.tfvars
 
-# 4 - Change file request.json to your preference parameters
+As seguintes variaveis precisam ser informadas:
 
-# 5 - Post to database using curl
+```
+aws_candidate_develop
+aws_candidate_email_develop
+aws_write_capacity  
+aws_read_capacity  
+aws_tags_env
+```
 
+Em seguida execute o comando make para init,plan e apply passando o ambiente
+
+```
+make terraform-init-dev
+make terraform-plan-dev
+make terraform-apply-dev
+
+```
+
+## PROD
+
+Dentro do diretorio **terraform/** crie um arquivo chamado **prod.tfvars**
+
+As seguintes variaveis precisam ser informadas:
+
+```
+aws_candidate_develop
+aws_candidate_email_develop
+aws_write_capacity  
+aws_read_capacity  
+aws_tags_env
+```
+
+Em seguida execute o comando make para init,plan e apply passando o ambiente:
+
+```
+make terraform-init-prod
+make terraform-plan-prod
+make terraform-apply-prod
+
+```
+
+## Deploy do Projeto serverless
+
+Para fazer deploy da aplicação serverless execute:
+
+```
+make deploy-serverless
+Serverless: Packaging service...
+Serverless: Excluding development dependencies...
+
+```
+
+# Metodos
+
+Existe um arquivo chamado **request.json** onde vc pode adicionar os parametros a serem passado na api
+
+EX: 
+
+```
+cat request.json
+{
+  "fullname": "Name",
+  "email": "Email@dot.com",
+  "experience": 2,
+  "skills": "ti",
+  "recruiterEmail": "email@dot.com"
+}
+
+```
+
+## Metodo POST
+
+Use o comando curl para executar o POST:
+
+```
 curl -d @request.json -H "Content-Type: application/json" \
 https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates
 
-# 6 - Get to database post
+```
 
+## Metodo GET
+
+Use o comando curl para executar o GET:
+
+```
 curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates
+```
 
-# 6.1 - Get candidate details by their id
+## Metodo Delete
 
-curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates/your_ramdom_id
+Use o comando curl para executar o Delete:
 
-# 7 - Delete post
-
+```
 curl -X DELETE https://rjts2fqk3d.execute-api.us-east-1.amazonaws.com/dev/candidates/your_id_to_post
+```
+
+## Consulta detalhada dos candidatos
+
+```
+curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates/your_ramdom_id
+```

@@ -4,6 +4,17 @@
 *.terraform/*
 .terraform/*
 .terraform/
+
+## Terraform
+tfplan
+*/.terraform.lock.hcl
+.terraform.lock.hcl
+*.tfplan
+.terraform.lock.hcl
+private.tf*
+-secret.tf*
+
+
 codigosTeste/*
 codigosTeste/
 *.DS_Store*
@@ -118,3 +129,4 @@ venv.bak/
 RespostaEX3.5/*
 Antigo/*
 *Icon*
+package-lock.json
