@@ -89,6 +89,7 @@ module.exports.get = (event, context, callback) => {
 };
 
 module.exports.remove = (event, context, callback) => {
+    console.log("Receieved request submit candidate details. Event is", event);
     const requestBody = JSON.parse(event.body);
     const id = requestBody.id;
 
