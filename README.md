@@ -58,7 +58,6 @@ aws_read_capacity
 aws_tags_env
 ```
 
-<<<<<<< HEAD
 Em seguida execute o comando make para init,plan e apply passando o ambiente
 
 ```
@@ -126,9 +125,6 @@ Use o comando curl para executar o POST:
 
 ```
 curl -d @request.json -H "Content-Type: application/json" \
-=======
-curl -d @insert.json -H "Content-Type: application/json" \
->>>>>>> d57a6e919ced1ddd62387b04af7954a855294a61
 https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates
 
 ```
@@ -145,7 +141,6 @@ curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidat
 
 Use o comando curl para executar o Delete:
 
-<<<<<<< HEAD
 ```
 curl -X DELETE https://rjts2fqk3d.execute-api.us-east-1.amazonaws.com/dev/candidates/your_id_to_post
 ```
@@ -155,8 +150,3 @@ curl -X DELETE https://rjts2fqk3d.execute-api.us-east-1.amazonaws.com/dev/candid
 ```
 curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates/your_ramdom_id
 ```
-=======
-curl -d @delete.json -H "Content-Type: application/json" \
-https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/removeCandidate/
-
->>>>>>> d57a6e919ced1ddd62387b04af7954a855294a61
