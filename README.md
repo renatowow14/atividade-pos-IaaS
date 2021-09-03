@@ -42,4 +42,4 @@ curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidat
 
 # 7 - Delete post
 
-curl -X DELETE https://rjts2fqk3d.execute-api.us-east-1.amazonaws.com/dev/candidates/your_id_to_post
+curl -X DELETE https://rjts2fqk3d.execute-api.us-east-1.amazonaws.com/dev/removeCandidate/your_id_to_post
