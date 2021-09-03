@@ -1,4 +1,4 @@
-# Final work infrastructure as code
+# Trabalho Final Infraestrutura como Código
 
 ![alt text](https://github.com/renatowow14/atividade-pos-IaaS/blob/main/images/image01.png)
 
@@ -9,7 +9,7 @@
  - Serverless
  - tfenv 
 
-# Setup NVM,Node e Serverless
+# Configurar NVM, Node e Serverless
 
 Para fazer a instalação dos componentes acima(NVM, node e Serverless), execute 
 
@@ -103,7 +103,7 @@ Serverless: Excluding development dependencies...
 
 # Metodos
 
-Existe um arquivo chamado **request.json** onde vc pode adicionar os parametros a serem passado na api
+Existe um arquivo chamado **insert.json** onde vc pode adicionar os parametros a serem passado na api
 
 EX: 
 
@@ -119,12 +119,24 @@ cat request.json
 
 ```
 
+Existe um arquivo chamado **delete.json** onde vc pode adicionar os parametros a serem passado na api
+
+EX: 
+
+```
+cat delete.json
+{
+  "id": "your_random_unique_id"
+}
+
+```
+
 ## Metodo POST
 
 Use o comando curl para executar o POST:
 
 ```
-curl -d @request.json -H "Content-Type: application/json" \
+curl -d @insert.json -H "Content-Type: application/json" \
 https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates
 
 ```
@@ -142,7 +154,9 @@ curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidat
 Use o comando curl para executar o Delete:
 
 ```
-curl -X DELETE https://rjts2fqk3d.execute-api.us-east-1.amazonaws.com/dev/candidates/your_id_to_post
+curl -d @delete.json -H "Content-Type: application/json" \
+https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/removeCandidate/
+
 ```
 
 ## Consulta detalhada dos candidatos
