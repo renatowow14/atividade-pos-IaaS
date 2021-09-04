@@ -92,23 +92,23 @@ module.exports.get = (event, context, callback) => {
 module.exports.remove = (event, context, callback) => {
     console.log("Receieved request submit candidate details. Event is", event);
     const requestBody = JSON.parse(event.body);
-    const id = requestBody.id;
+    // const email = requestBody.email;
     console.log(requestBody);
 
-    if (typeof id !== 'string') {
-        console.error('Validation Failed');
-        callback(new Error('Couldn\'t remove candidate because of validation errors.'));
-        return;
-    }
+    // if (typeof email !== 'string') {
+    //     console.error('Validation Failed');
+    //     callback(new Error('Couldn\'t remove candidate because of validation errors.'));
+    //     return;
+    // }
     
-    const removecandidateFx = R.composeP(removeCandidateP, removeCandidateEmailP);
+    const removecandidateFx = R.composeP(removeCandidateEmailP, removeCandidateP);
 
-    removecandidateFx(id)
+    removecandidateFx(requestBody)
         .then(res => {
-            console.log(`Successfully removed ${id} candidate to system`);
+            console.log(`Successfully removed candidate to system`);
             callback(null, successResponseBuilder(
                 JSON.stringify({
-                    message: `Sucessfully removed candidate with id ${id}`
+                    message: `Sucessfully removed candidate`
                 }))
             );
         })
@@ -186,14 +186,15 @@ const failureResponseBuilder = (statusCode, body) => {
     };
 };
 
-const removeCandidateP = id => {
+const removeCandidateP = candidate => {
     console.log('Removing candidate ');
-    console.log('removeCandidateP ID ', id);
+    // console.log('removeCandidateP ID ', email);
 
     const params = {
         TableName: process.env.CANDIDATE_TABLE,
         Key:{
-            "id": id
+            "email": candidate.email,
+            "id":   candidate.id
         },
         ConditionExpression:"info.rating <= :val",
         ExpressionAttributeValues: {
@@ -213,14 +214,15 @@ const removeCandidateP = id => {
     return promise;
 }
 
-const removeCandidateEmailP = id => {
+const removeCandidateEmailP = candidate => {
     console.log('Removing candidate email');
-    console.log('removeCandidateEmailP ', id);
+    // console.log('removeCandidateEmailP ', email);
 
     const params = {
         TableName: process.env.CANDIDATE_EMAIL_TABLE,
         Key:{
-            "candidate_id": id
+            "candidate_id": candidate.id,
+            "email": candidate.email
         },
         ConditionExpression:"info.rating <= :val",
         ExpressionAttributeValues: {
