@@ -91,34 +91,23 @@ module.exports.get = (event, context, callback) => {
 };
 
 module.exports.remove = (event, context, callback) => {
-    console.log("Receieved request submit candidate details. Event is", event);
     const requestBody = JSON.parse(event.body);
-
-    // if (typeof email !== 'string') {
-    //     console.error('Validation Failed');
-    //     callback(new Error('Couldn\'t remove candidate because of validation errors.'));
-    //     return;
-    // }
-    
-    const removecandidateFx = R.composeP(removeCandidateP);
-
-    removecandidateFx(requestBody)
-        .then(res => {
-            console.log(`Successfully removed candidate to system`);
-            callback(null, successResponseBuilder(
-                JSON.stringify({
-                    message: `Sucessfully removed candidate`
-                }))
-            );
+    const params = {
+        TableName: process.env.CANDIDATE_TABLE,
+        Key: {
+            id: requestBody.id,
+            email: requestBody.email
+        },
+    };
+    dynamoDb.delete(params)
+        .promise()
+        .then(result => {
+            callback(null, successResponseBuilder(JSON.stringify(result.Item)));
         })
-        .catch(err => {
-            console.log('Failed to remove candidate to system', err);
-            callback(null, failureResponseBuilder(
-                409,
-                JSON.stringify({
-                    message: err
-                })
-            ))
+        .catch(error => {
+            console.error(error);
+            callback(new Error('Couldn\'t remove candidate.'));
+            return;
         });
 };
 
@@ -150,7 +139,6 @@ const submitCandidateP = candidate => {
         .promise()
         .then(res => candidate);
 };
-
 
 const successResponseBuilder = (body) => {
     return {
