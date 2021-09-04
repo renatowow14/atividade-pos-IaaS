@@ -27,7 +27,4 @@ terraform-plan-%:
 
 terraform-apply-%:
 	cd terraform && terraform apply  -var-file="$*.tfvars"
-
-
-
-
+	

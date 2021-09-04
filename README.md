@@ -8,8 +8,12 @@
  - Node 14
  - Serverless
  - tfenv 
+ - AWS CLI com ACCESS KEY
 
-# Configurar NVM, Node e Serverless
+
+
+# Passo 1
+## Configurar NVM, Node e Serverless
 
 Para fazer a instalação dos componentes acima(NVM, node e Serverless), execute 
 
@@ -34,7 +38,7 @@ Plugin: 5.4.4
 SDK: 4.3.0
 Components: 3.17.0
 ```
-
+# Passo 2
 ## Setup Terraform
 
 Nos utilizamos o **tfenv** como gerenciador das versões do terraform, o tfenv é inspirado no **rbenv**. A instalação pode ser feito pelo processo de **make**, conforme abaixo
@@ -42,6 +46,11 @@ Nos utilizamos o **tfenv** como gerenciador das versões do terraform, o tfenv �
 ```
 make terraform-setup
 ```
+
+IMPORTANT: Após fazer o setup é necessário configurar o token da aws no **~/.aws/credentials**
+
+
+# Passo 3
 # Provisionamento de  Infraestrutura com Terraform
 
 ## DEV
@@ -89,7 +98,7 @@ make terraform-plan-prod
 make terraform-apply-prod
 
 ```
-
+# Passo 4
 ## Deploy do Projeto serverless
 
 Para fazer deploy da aplicação serverless execute:

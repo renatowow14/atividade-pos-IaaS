@@ -7,10 +7,6 @@ variable "aws_candidate_develop" {
   description = "The table name of candidate dev ."
 }
 
-variable "aws_candidate_email_develop" {
-  description = "The table name of candidate dev e-mail ."
-}
-
 variable "aws_read_capacity" {
   description = "The read Capacity."
 }
