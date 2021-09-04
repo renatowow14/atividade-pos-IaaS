@@ -95,14 +95,14 @@ module.exports.remove = (event, context, callback) => {
     const params = {
         TableName: process.env.CANDIDATE_TABLE,
         Key: {
-            id: requestBody.id,
-            email: requestBody.email
+            id: requestBody.id
         },
     };
+    console.log('PARAMS:', params);
     dynamoDb.delete(params)
         .promise()
         .then(result => {
-            callback(null, successResponseBuilder(JSON.stringify(result.Item)));
+            callback(null, successResponseBuilder(JSON.stringify({ message: `Sucessfully removed candidate with id ${requestBody.id}`})));
         })
         .catch(error => {
             console.error(error);
