@@ -24,7 +24,8 @@ module.exports.submit = (event, context, callback) => {
     }
 
     const candidate = candidateInfo(fullname, email, experience, skills, recruiterEmail);
-    const candidateSubmissionFx = R.composeP(submitCandidateEmailP, submitCandidateP, checkCandidateExistsP);
+    const candidateSubmissionFx = R.composeP(submitCandidateP);
+    // const candidateSubmissionFx = R.composeP(submitCandidateEmailP, submitCandidateP, checkCandidateExistsP);
 
     candidateSubmissionFx(candidate)
         .then(res => {
@@ -92,8 +93,6 @@ module.exports.get = (event, context, callback) => {
 module.exports.remove = (event, context, callback) => {
     console.log("Receieved request submit candidate details. Event is", event);
     const requestBody = JSON.parse(event.body);
-    // const email = requestBody.email;
-    console.log(requestBody);
 
     // if (typeof email !== 'string') {
     //     console.error('Validation Failed');
@@ -101,7 +100,7 @@ module.exports.remove = (event, context, callback) => {
     //     return;
     // }
     
-    const removecandidateFx = R.composeP(removeCandidateEmailP, removeCandidateP);
+    const removecandidateFx = R.composeP(removeCandidateP);
 
     removecandidateFx(requestBody)
         .then(res => {
