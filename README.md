@@ -1,6 +1,20 @@
+
 # Trabalho Final Infraestrutura como Código
 
 ![alt text](https://github.com/renatowow14/atividade-pos-IaaS/blob/main/images/image01.png)
+
+
+## Caso de Uso do projeto
+
+O caso de uso foi pensado no cenário de uma API de cadastro de usuário para o processo de recrutamento e seleção de candidado.
+
+## Modelo de dados do DynamoDB
+
+A configuração da tabela do DynamoDB encontra-se no terraform, e possui os seguintes atributos:
+
+* **Nome:** id
+* **Tipo:** String
+
 
 ## Pre requisitos
 
