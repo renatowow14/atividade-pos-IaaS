@@ -25,6 +25,14 @@ A configuração da tabela do DynamoDB encontra-se no terraform, e possui os seg
  - AWS CLI com ACCESS KEY
 
 
+## O projeto usa os seguintes serviços AWS:
+
+- AWS Lambda
+- AWS DynamoDB
+- AWS Cloudformation
+- AWS S3
+- AWS API Gateway
+
 
 # Passo 1
 ## Configurar NVM, Node e Serverless
