@@ -203,9 +203,11 @@ curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidat
 ```
 Para produção:
 
-make terraform-destroy-prod
+-> make terraform-destroy-prod
+-> sls remove -v 
 
 Para desenvolvimento:
 
-make terraform-destroy-dev 
+-> make terraform-destroy-dev 
+-> sls remove -v 
 ```
