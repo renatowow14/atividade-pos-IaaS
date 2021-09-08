@@ -82,6 +82,7 @@ Dentro do diretorio **terraform/** crie um arquivo chamado dev.tfvars
 As seguintes variaveis precisam ser informadas:
 
 ```
+cd ~/atividade-pos-IaaS
 aws_candidate_develop
 aws_candidate_email_develop
 aws_write_capacity  
@@ -92,6 +93,7 @@ aws_tags_env
 Em seguida execute o comando make para init,plan e apply passando o ambiente
 
 ```
+cd ~/atividade-pos-IaaS
 make terraform-init-dev
 make terraform-plan-dev
 make terraform-apply-dev
