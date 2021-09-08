@@ -28,3 +28,5 @@ terraform-plan-%:
 terraform-apply-%:
 	cd terraform && terraform apply  -var-file="$*.tfvars"
 	
+terraform-destroy-%:
+	cd terraform && terraform destroy  -var-file="$*.tfvars"
