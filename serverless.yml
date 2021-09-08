@@ -29,7 +29,7 @@ functions:
   listCandidates:
     handler: api/candidate.list
     memorySize: 128
-    description: List all candidates
+    description: List all candidates.
     events:
       - http: 
           path: candidates
@@ -37,6 +37,7 @@ functions:
           cors: true     
   candidateDetails:
     handler: api/candidate.get
+    description: Get candidate details.
     events:
       - http:
           path: candidates/{id}
@@ -44,6 +45,7 @@ functions:
           cors: true 
   candidateRemove:
     handler: api/candidate.remove
+    description: Remove an entered candidate.
     events:
       - http:
           path: removeCandidate
