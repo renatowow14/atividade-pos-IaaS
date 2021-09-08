@@ -197,3 +197,15 @@ https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/removeCandidate/
 ```
 curl -v https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/candidates/your_ramdom_id
 ```
+
+## Destruir o projeto
+
+```
+Para produção:
+
+make terraform-destroy-prod
+
+Para desenvolvimento:
+
+make terraform-destroy-dev 
+```
