@@ -16,7 +16,7 @@ A configuração da tabela do DynamoDB encontra-se no terraform, e possui os seg
 * **Tipo:** String
 
 
-## Pre requisitos
+## Pré-requisitos
 
  - NVM
  - Node 14
