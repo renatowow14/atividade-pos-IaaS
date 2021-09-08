@@ -6,7 +6,7 @@
 
 ## Caso de Uso do projeto
 
-O caso de uso foi pensado no cenário de uma API de cadastro de usuário para o processo de recrutamento e seleção de candidado.
+O caso de uso foi pensado no cenário de uma API de cadastro de usuário para o processo de recrutamento e seleção de candidado. Este serviço expõe a API REST usando o API Gateway e Lambda que é usado pela interface com o usuário para enviar detalhes do candidato. Os detalhes do candidato são armazenados no DynamoDB.
 
 ## Modelo de dados do DynamoDB
 
