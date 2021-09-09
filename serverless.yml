@@ -13,6 +13,7 @@ provider:
         - dynamodb:Scan
         - dynamodb:GetItem
         - dynamodb:PutItem
+        - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/candidate-*"
 
@@ -50,4 +51,12 @@ functions:
       - http:
           path: removeCandidate
           method: post
-          cors: true                 
+          cors: true
+  candidateUpdate:
+    handler: api/candidate.update
+    description: Update an entered candidate.
+    events:
+      - http:
+          path: updateCandidate
+          method: put
+          cors: true                   

@@ -111,6 +111,36 @@ module.exports.remove = (event, context, callback) => {
         });
 };
 
+module.exports.update = (event, context, callback) => {
+    const requestBody = JSON.parse(event.body);
+    const params = {
+        TableName: process.env.CANDIDATE_TABLE,
+        Key: {
+            id: requestBody.id
+        },
+        UpdateExpression:'set experience = :_experience, fullname = :_fullname, skills = :_skills', 
+        ExpressionAttributeValues: {
+          ":_fullname": requestBody.fullname,
+          ":_skills": requestBody.skills,
+          ":_experience": requestBody.experience
+        
+        },
+        ReturnValues: 'UPDATED_NEW'
+    };
+    console.log('PARAMS:', params);
+    dynamoDb.update(params)
+        .promise()
+        .then(result => {
+            console.log('RESULT:', result);
+            callback(null, successResponseBuilder(JSON.stringify({ message: `Sucessfully update candidate with id ${requestBody.id}`})));
+        })
+        .catch(error => {
+            console.error(error);
+            callback(new Error('Couldn\'t update candidate.'));
+            return;
+        });
+};
+
 const checkCandidateExistsP = (candidate) => {
     console.log('Checking if candidate already exists...');
     const query = {
