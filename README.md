@@ -136,7 +136,7 @@ Serverless: Excluding development dependencies...
 
 # Metodos
 
-Existe um arquivo chamado **insert.json** onde vc pode adicionar os parametros a serem passado na api
+Existe um arquivo chamado **insert.json** onde vc pode adicionar os parametros a serem passado na api, para realizar a insercao na tabela.
 
 EX: 
 
@@ -152,7 +152,7 @@ cat request.json
 
 ```
 
-Existe um arquivo chamado **delete.json** onde vc pode adicionar os parametros a serem passado na api
+Existe um arquivo chamado **delete.json** onde vc pode adicionar os parametros a serem passado na api, para realizar o delete na tabela.
 
 EX: 
 
@@ -160,6 +160,23 @@ EX:
 cat delete.json
 {
   "id": "your_random_unique_id"
+}
+
+```
+
+Existe um arquivo chamado **update.json** onde vc pode adicionar os parametros a serem passado na api, para realizar o update na tabela.
+
+EX: 
+
+```
+cat update.json
+{
+{
+    "id": "your_random_unique_id",
+    "experience": 9,
+    "skills": "Analyst",
+    "fullname": "name candidate"
+}
 }
 
 ```
@@ -189,6 +206,17 @@ Use o comando curl para executar o Delete:
 ```
 curl -d @delete.json -H "Content-Type: application/json" \
 https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/removeCandidate/
+
+```
+
+
+## Metodo Update
+
+Use o comando curl para executar o Update:
+
+```
+curl -d @update.json -H "Content-Type: application/json" \
+https://h8h04tg730.execute-api.us-east-1.amazonaws.com/dev/updateCandidate
 
 ```
 
