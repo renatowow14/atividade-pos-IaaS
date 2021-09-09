@@ -215,7 +215,7 @@ Use o comando curl para executar o Update:
 
 ```
 curl -d @update.json -H "Content-Type: application/json" \
-https://h8h04tg730.execute-api.us-east-1.amazonaws.com/dev/updateCandidate
+https://your-url-ramdom.execute-api.us-east-1.amazonaws.com/dev/updateCandidate
 
 ```
 
