@@ -170,13 +170,12 @@ EX:
 
 ```
 cat update.json
-{
+
 {
     "id": "your_random_unique_id",
     "experience": 9,
     "skills": "Analyst",
     "fullname": "name candidate"
-}
 }
 
 ```
